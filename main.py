@@ -2,6 +2,7 @@ import sys
 from chicken_disease_classification.logger import logging
 from chicken_disease_classification.exception import CustomException
 from chicken_disease_classification.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
+from chicken_disease_classification.pipeline.stage_02_data_validation import DataValidationTrainingPipeline
 
 
 
@@ -11,6 +12,16 @@ try:
     logging.info(f">>>>>>> stage {STAGE_NAME} started <<<<<<<")
     data_ingestion = DataIngestionTrainingPipeline()
     data_ingestion.main()
+    logging.info(f">>>>>>> stage {STAGE_NAME} completed <<<<<<<\n\nx==========x")
+except Exception as e:
+    raise CustomException(e, sys)
+
+
+STAGE_NAME="Data Validation Stage"
+try:
+    logging.info(f">>>>>>> stage {STAGE_NAME} started <<<<<<<")
+    data_validation = DataValidationTrainingPipeline()
+    data_validation.main()
     logging.info(f">>>>>>> stage {STAGE_NAME} completed <<<<<<<\n\nx==========x")
 except Exception as e:
     raise CustomException(e, sys)
