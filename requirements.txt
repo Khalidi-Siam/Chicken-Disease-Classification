@@ -1,0 +1,8 @@
+pandas
+numpy
+matplotlib
+seaborn
+tqdm
+pyYAML
+joblib
+-e .
