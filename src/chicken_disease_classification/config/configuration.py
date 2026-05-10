@@ -1,6 +1,6 @@
 from chicken_disease_classification.constants import *
 from chicken_disease_classification.utils.common import read_yaml, create_directories
-from chicken_disease_classification.entity.config_entity import DataIngestionConfig, DataValitationConfig, PrepareBaseModelConfig, PrepareCallbacksConfig, TrainingConfig
+from chicken_disease_classification.entity.config_entity import DataIngestionConfig, DataValitationConfig, PrepareBaseModelConfig, PrepareCallbacksConfig, TrainingConfig, EvaluationConfig
 from pathlib import Path
 import os
 
@@ -105,4 +105,17 @@ class ConfigurationManager:
             params_image_size=self.params["IMAGE_SIZE"]
         )
         return training_config
+    
+
+    def get_evaluation_config(self) -> EvaluationConfig:
+        config = self.config
+
+        evaluation_config = EvaluationConfig(
+            path_of_model=Path(config["training"]["trained_model_path"]),
+            training_data=Path(config["data_validation"]["unzip_data_dir"]),
+            all_params=self.params,
+            params_image_size=self.params["IMAGE_SIZE"],
+            params_batch_size=self.params["BATCH_SIZE"]
+        )
+        return evaluation_config
       

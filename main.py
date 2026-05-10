@@ -5,6 +5,7 @@ from chicken_disease_classification.pipeline.stage_01_data_ingestion import Data
 from chicken_disease_classification.pipeline.stage_02_data_validation import DataValidationTrainingPipeline
 from chicken_disease_classification.pipeline.stage_03_prepare_base_model import PrepareBaseModelTrainingPipeline
 from chicken_disease_classification.pipeline.stage_04_training import ModelTrainingPipeline
+from chicken_disease_classification.pipeline.stage_05_evaluation import EvaluationPipeline
 
 
 
@@ -43,6 +44,16 @@ try:
     logging.info(f">>>>>>> stage {STAGE_NAME} started <<<<<<<")
     training = ModelTrainingPipeline()
     training.main()
+    logging.info(f">>>>>>> stage {STAGE_NAME} completed <<<<<<<\n\nx==========x")
+except Exception as e:
+    raise CustomException(e, sys)
+
+
+STAGE_NAME = "Model Evaluation stage"
+try:
+    logging.info(f">>>>>>> stage {STAGE_NAME} started <<<<<<<")
+    evaluation = EvaluationPipeline()
+    evaluation.main()
     logging.info(f">>>>>>> stage {STAGE_NAME} completed <<<<<<<\n\nx==========x")
 except Exception as e:
     raise CustomException(e, sys)
