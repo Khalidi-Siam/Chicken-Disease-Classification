@@ -9,4 +9,6 @@ tensorflow
 tensorboard
 scipy
 dvc
+Flask
+Flask-Cors
 -e .
