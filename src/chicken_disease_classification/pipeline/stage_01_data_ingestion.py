@@ -2,6 +2,7 @@ import sys
 from chicken_disease_classification.config.configuration import ConfigurationManager
 from chicken_disease_classification.components.data_ingestion import DataIngestion
 from chicken_disease_classification.exception import CustomException
+from chicken_disease_classification.logger import logging
 
 
 STAGE_NAME = "Data Ingestion stage"
@@ -20,3 +21,12 @@ class DataIngestionTrainingPipeline:
             data_ingestion.extract_zip_file()
         except Exception as e:
             raise CustomException(e, sys)
+        
+if __name__ == "__main__":
+    try:
+        logging.info(f">>>>>>> stage {STAGE_NAME} started <<<<<<<")
+        data_ingestion = DataIngestionTrainingPipeline()
+        data_ingestion.main()
+        logging.info(f">>>>>>> stage {STAGE_NAME} completed <<<<<<<\n\nx==========x")
+    except Exception as e:
+        raise CustomException(e, sys)

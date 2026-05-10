@@ -3,6 +3,7 @@ from chicken_disease_classification.exception import CustomException
 from chicken_disease_classification.config.configuration import ConfigurationManager
 from chicken_disease_classification.components.prepare_callbacks import PrepareCallbacksTrainingPipeline
 from chicken_disease_classification.components.training import Training
+from chicken_disease_classification.logger import logging
 
 
 STAGE_NAME = "Model Training stage"
@@ -29,3 +30,12 @@ class ModelTrainingPipeline:
             
         except Exception as e:
             raise CustomException(e, sys)
+        
+if __name__ == "__main__":
+    try:
+        logging.info(f">>>>>>> stage {STAGE_NAME} started <<<<<<<")
+        training = ModelTrainingPipeline()
+        training.main()
+        logging.info(f">>>>>>> stage {STAGE_NAME} completed <<<<<<<\n\nx==========x")
+    except Exception as e:
+        raise CustomException(e, sys)

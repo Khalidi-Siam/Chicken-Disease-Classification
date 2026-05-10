@@ -2,6 +2,7 @@ import sys
 from chicken_disease_classification.exception import CustomException
 from chicken_disease_classification.config.configuration import ConfigurationManager
 from chicken_disease_classification.components.data_validation import DataValidation
+from chicken_disease_classification.logger import logging
 
 STAGE_NAME = "Data Ingestion stage"
 
@@ -18,3 +19,12 @@ class DataValidationTrainingPipeline:
             data_validation.validate_all_files_exist()
         except Exception as e:
             raise CustomException(e, sys)
+        
+if __name__ == "__main__":
+    try:
+        logging.info(f">>>>>>> stage {STAGE_NAME} started <<<<<<<")
+        data_validation = DataValidationTrainingPipeline()
+        data_validation.main()
+        logging.info(f">>>>>>> stage {STAGE_NAME} completed <<<<<<<\n\nx==========x")
+    except Exception as e:
+        raise CustomException(e, sys)

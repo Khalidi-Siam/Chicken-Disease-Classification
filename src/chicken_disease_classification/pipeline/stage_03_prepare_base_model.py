@@ -2,6 +2,7 @@ import sys
 from chicken_disease_classification.exception import CustomException
 from chicken_disease_classification.config.configuration import ConfigurationManager
 from chicken_disease_classification.components.prepare_base_model import PrepareBaseModel
+from chicken_disease_classification.logger import logging
 
 STAGE_NAME = "Prepare Base Model stage"
 
@@ -20,3 +21,12 @@ class PrepareBaseModelTrainingPipeline:
             prepare_base_model.update_base_model()
         except Exception as e:
             raise CustomException(e, sys)
+        
+if __name__ == "__main__":
+    try:
+        logging.info(f">>>>>>> stage {STAGE_NAME} started <<<<<<<")
+        prepare_base_model = PrepareBaseModelTrainingPipeline()
+        prepare_base_model.main()
+        logging.info(f">>>>>>> stage {STAGE_NAME} completed <<<<<<<\n\nx==========x")
+    except Exception as e:
+        raise CustomException(e, sys)

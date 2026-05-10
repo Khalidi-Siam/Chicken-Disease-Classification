@@ -8,4 +8,5 @@ joblib
 tensorflow
 tensorboard
 scipy
+dvc
 -e .
