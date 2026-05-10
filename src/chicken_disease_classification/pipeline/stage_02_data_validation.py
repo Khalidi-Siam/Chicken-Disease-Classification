@@ -4,7 +4,7 @@ from chicken_disease_classification.config.configuration import ConfigurationMan
 from chicken_disease_classification.components.data_validation import DataValidation
 from chicken_disease_classification.logger import logging
 
-STAGE_NAME = "Data Ingestion stage"
+STAGE_NAME = "Data Validation stage"
 
 
 class DataValidationTrainingPipeline:
