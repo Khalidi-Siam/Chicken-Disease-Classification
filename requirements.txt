@@ -6,4 +6,6 @@ tqdm
 pyYAML
 joblib
 tensorflow
+tensorboard
+scipy
 -e .
