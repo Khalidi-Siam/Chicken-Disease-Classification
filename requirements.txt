@@ -1,14 +1,5 @@
-pandas
 numpy
-matplotlib
-seaborn
-tqdm
-pyYAML
-joblib
 tensorflow
-tensorboard
-scipy
-dvc
 Flask
 Flask-Cors
 -e .
